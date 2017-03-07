@@ -1,0 +1,23 @@
+{
+  "name": "11-sql_queries_101",
+  "version": "1.0.0",
+  "description": "Class exercise - practicing sql queries",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SorrelBrigman/11-sql_queries_101.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SorrelBrigman/11-sql_queries_101/issues"
+  },
+  "homepage": "https://github.com/SorrelBrigman/11-sql_queries_101#readme",
+  "dependencies": {
+    "sqlite3": "^3.1.8"
+  }
+}

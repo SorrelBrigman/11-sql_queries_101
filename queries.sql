@@ -5,9 +5,14 @@ SELECT * FROM Genre
 --Using the INSERT statement, add one of your favorite artists to the Artist table.
 INSERT INTO Artist(ArtistName, YearEstablished)
 VALUES ('Passenger', 2009);
+
+--alterternate version: INSERT INTO artist VALUES(null, "Billy Beetz", 2017)
 --Using the INSERT statement, add one, or more, albums by your artist to the Album table.
 INSERT INTO Album(Title, ReleaseDate, AlbumLength, Label, ArtistId, GenreId)
 VALUES('Passenger', "12/01/2009", "2000", "self-released", "29", "2");
+--Alterernate version with subQuery: INSERT INTO album VALUES(null, "bears and beetz", "02/28/2017", 3212, "epic", (SELECT artistId FROM artist where artistName = "Billy Beetz"), (SELECT genreId FROM genre where label = "Latin"))
+--Additional Alt version: INSERT INTO album SELECT null, "Mars Needs Guitars", 1985, 3333, "Big Time Records", ar.artistId, g.genre FROM artist ar, genre g WHERE ar.artistName="Hoodoo Gurus" and g.label = "Rock"
+
 
 --Using the INSERT statement, add some songs that are on that album to the Song table.
 INSERT INTO Song(Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
@@ -15,12 +20,15 @@ VALUES("Young as the Morning, Old as the Sea", "45", "01/01/2017",  "2", "29", "
 INSERT INTO Song(Title, SongLength, ReleaseDate, GenreId, ArtistId, AlbumId)
 VALUES("Let Her Go", "56", "12/01/2009",  "2", "29", "24");
 
+
+-- alt version:  INSERT INTO song VALUES(null, "Beetz for Dinner", 3647, "02/10/2017", (SELECT genreid FROM genre WHERE label = "Latin"), (SELECT artistId FROM artist WHERE artistname = "Billy Beetz"), (SELECT albumId FROM album WHERE title = "Bears and Beetz"))
+
 -- Write a SELECT query that provides the song titles, album title, and artist name for all of the data you just entered in. Use the LEFT JOIN keyword sequence to connect the tables, and the WHERE keyword to filter the results to the album and artist you added. Here is some more info on joins that might help.
 SELECT Song.Title AS Song_Title, Artist.ArtistName, Album.Title AS Album_Name, Genre.Label AS Genre
 FROM Song
-JOIN Artist ON Artist.ArtistId = Song.ArtistId
-JOIN Album ON Album.AlbumId = Song.AlbumId
-JOIN Genre ON Genre.GenreId = Song.GenreId
+LEFT JOIN Artist ON Artist.ArtistId = Song.ArtistId
+LEFT JOIN Album ON Album.AlbumId = Song.AlbumId
+LEFT JOIN Genre ON Genre.GenreId = Song.GenreId
 WHERE Artist.ArtistName = "Passenger";
 -- Reminder: Direction of join matters. Try the following statements and see the difference in results.
 
